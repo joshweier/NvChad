@@ -4,6 +4,13 @@ local plugins = {
     lazy = false
   },
   {
+    "tpope/vim-fugitive",
+    lazy = false,
+    mappings = function ()
+      require("core.utils").load_mappings("fugitive")
+    end,
+  },
+  {
     "unblevable/quick-scope",
     lazy = false
   },
@@ -16,8 +23,18 @@ local plugins = {
     lazy = false
   },
   {
+    lazy = false,
     "cdelledonne/vim-cmake",
-    lazy = false
+    config = function ()
+      require("custom.configs.vim-cmake")
+    end,
+  },
+  {
+    lazy = false,
+    "mbbill/undotree",
+    config = function (_, _)
+      require("core.utils").load_mappings("undotree")
+    end
   },
   {
     lazy = false,
