@@ -16,11 +16,18 @@ local plugins = {
     lazy = false
   },
   {
+    "cdelledonne/vim-cmake",
+    lazy = false
+  },
+  {
+    lazy = false,
     'stevearc/overseer.nvim',
-    opts = {},
     dependencies = {
       "mfussenegger/nvim-dap",
     },
+    opts = function ()
+     require("custom.configs.overseer")
+    end,
     config = function (_, _)
       require("core.utils").load_mappings("overseer")
     end
