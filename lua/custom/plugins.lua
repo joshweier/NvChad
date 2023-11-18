@@ -1,8 +1,10 @@
 local plugins = {
+  -- vim-surround
   {
     "tpope/vim-surround",
     lazy = false
   },
+  -- Fugitive
   {
     "tpope/vim-fugitive",
     lazy = false,
@@ -10,18 +12,22 @@ local plugins = {
       require("core.utils").load_mappings("fugitive")
     end,
   },
+  -- quick-scope
   {
     "unblevable/quick-scope",
     lazy = false
   },
+  -- vim-highlightedyank
   {
     "machakann/vim-highlightedyank",
     lazy = false
   },
+  -- tmux navigation
   {
     "christoomey/vim-tmux-navigator",
     lazy = false
   },
+  -- CMake tools
   {
     lazy = false,
     "cdelledonne/vim-cmake",
@@ -29,6 +35,7 @@ local plugins = {
       require("custom.configs.vim-cmake")
     end,
   },
+  -- Undotree
   {
     lazy = false,
     "mbbill/undotree",
@@ -36,6 +43,7 @@ local plugins = {
       require("core.utils").load_mappings("undotree")
     end
   },
+  -- Task running
   {
     lazy = false,
     'stevearc/overseer.nvim',
@@ -49,6 +57,7 @@ local plugins = {
       require("core.utils").load_mappings("overseer")
     end
   },
+  -- Debugging UI
   {
     "rcarriga/nvim-dap-ui",
     event = "VeryLazy",
@@ -68,6 +77,7 @@ local plugins = {
       end
     end
   },
+  -- Debugger integration
   {
     "jay-babu/mason-nvim-dap.nvim",
     event = "VeryLazy",
@@ -79,6 +89,7 @@ local plugins = {
       handlers = {},
     }
   },
+  -- Debugger integration
   {
     "mfussenegger/nvim-dap",
     config = function (_, _)
@@ -86,29 +97,12 @@ local plugins = {
     end
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+   "jose-elias-alvarez/null-ls.nvim",
     event = "VeryLazy",
     opts = function ()
      return require("custom.configs.null-ls")
     end
   },
-  {
-    "neovim/nvim-lspconfig",
-    config = function ()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
-    end
-  },
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "clangd",
-        "clang-format",
-        "codelldb"
-      }
-    }
-  }
 }
 
 return plugins
