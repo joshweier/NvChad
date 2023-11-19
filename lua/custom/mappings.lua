@@ -4,7 +4,38 @@ M.dap = {
   plugin = true,
   n = {
     ["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", "Add breakpoint at line", },
-    ["<leader>dr"] = { "<cmd> DapContinue <CR>", "Start or continue debugger", },
+    ["<F5>"] = { "<cmd> DapContinue <CR>", "Start or continue debugger", },
+  }
+}
+
+M.dapui = {
+  plugin = true,
+  n = {
+    ["<leader>dt"] = {
+      function()
+        require("dapui").toggle()
+      end,
+      "Toggle the DAP UI"
+    }
+  }
+}
+
+M.cmake = {
+  plugin = true,
+  n = {
+    ["<F7>"] = { "<cmd> CMakeBuild <CR>", "Build current target", },
+    ["<leader><Esc>"] = { "<cmd> CMakeClose <CR>", "Close the terminal window", },
+    ["<leader>ci"] = { "<cmd> CMakeInstall <CR>", "Install", },
+  }
+}
+
+M.tmuxnavigator = {
+  plugin = true,
+  n = {
+    ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", "TMux Navigate Left", },
+    ["<C-l>"] = { "<cmd> TmuxNavigateRight <CR>", "TMux Navigate Right", },
+    ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", "TMux Navigate Up", },
+    ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", "TMux Navigate Down", },
   }
 }
 
@@ -16,13 +47,8 @@ M.overseer = {
   }
 }
 
-M.undotree = {
-  n = {
-    ["<leader>u"] = { "<cmd> UndotreeToggle <CR>", "Toggle UndoTree" },
-  }
-}
-
 M.fugitive = {
+  plugin = true,
   n = {
     ["<leader>gs"] = { "<cmd> Git <CR>", "Fugitive" },
   }

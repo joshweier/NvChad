@@ -1,13 +1,28 @@
-local base = require("plugins.configs.lspconfig")
-local on_attach = base.on_attach
-local capabilities = base.capabilities
-
+local configs = require("plugins.configs.lspconfig")
+local on_attach = configs.on_attach
+local capabilities = configs.capabilities
 local lspconfig = require("lspconfig")
 
+-- lspconfig.ccls.setup(
+--     {
+--         init_options = {
+--             compilationDatabaseDirectory = "build";
+--             index = {
+--                 threads = 0;
+--             };
+--             clang = {
+--                 excludeArgs = { "-frounding-math"} ;
+--             };
+--         }
+--     }
+-- )
+
 lspconfig.clangd.setup {
-  on_attach = function(client, bufnr)
-    client.server_capabilities.signatureHelpProvider = false
-    on_attach(client, bufnr)
-  end,
-  capabilities = capabilities
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = {
+        "clangd",
+        "--offset-encoding=utf-16",
+    },
 }
+
