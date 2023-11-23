@@ -8,7 +8,7 @@ M.dap = {
         ["<F10>"] = { "<cmd> DapStepOver <CR>", "Step Over", },
         ["<F11>"] = { "<cmd> DapStepInto <CR>", "Step Into", },
         ["<leader>ds"] = { "<cmd> DapTerminate <CR>", "Terminate", },
-    }
+    },
 }
 
 M.dapui = {
@@ -19,7 +19,8 @@ M.dapui = {
                 require("dapui").toggle()
             end,
             "Toggle the DAP UI"
-        }
+        },
+        ["<Leader>dhh"] = { ":lua require('dap.ui.variables').hover()<CR>" },
     }
 }
 
@@ -67,6 +68,7 @@ M.general = {
         ["<leader>cp"] = { "<cmd> cp <CR>", "Prev error"},
         ["<leader>cw"] = { "<cmd> cw <CR>", "Show errors"},
         ["<leader>cl"] = { "<cmd> ccl <CR>", "Close errors"},
+        ["<leader>co"] = { "<cmd> copen <CR>", "Open errors"},
         ["<F4>"] = { "<cmd> ClangdSwitchSourceHeader <CR>", "Toggle header / source"},
         ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Change word under cursor" },
         ["Q"] = { "<nop>", "Never do this!" },

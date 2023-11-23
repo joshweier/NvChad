@@ -43,4 +43,8 @@ dap.configurations.cpp = {
 -- Don't break on raised exceptions
 dap.defaults.fallback.exception_breakpoints = {'raised'}
 
+-- Change the breakpoint sign
+vim.fn.sign_define('DapBreakpoint',{ text ='🟥', texthl ='', linehl ='', numhl =''})
+vim.fn.sign_define('DapStopped',{ text ='▶️', texthl ='', linehl ='', numhl =''})
+
 return dap
