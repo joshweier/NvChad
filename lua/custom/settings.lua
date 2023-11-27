@@ -9,11 +9,11 @@ function M.setup()
     vim.opt.shiftwidth = 4
     vim.opt.expandtab = true
 
-    vim.opt.smartindent = true
+    vim.opt.smartindent = false
     vim.opt.wrap = false
     vim.opt.swapfile = false
     vim.opt.backup = false
-    vim.opt.updatetime = 50
+    vim.opt.updatetime = 750
     vim.opt.signcolumn = "yes"
 
     vim.opt.hlsearch = false
@@ -25,7 +25,8 @@ function M.setup()
 
     vim.g.mapleader = " "
 
-    vim.opt.formatoptions = "tcq"
+    vim.opt.formatoptions:remove{ "c", "r", "o" }
+    -- vim.opt.switchbuf = "useopen"
 end
 
 return M

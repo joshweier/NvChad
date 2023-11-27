@@ -1,4 +1,12 @@
 local plugins = {
+    -- Session management
+    {
+        'tpope/vim-obsession',
+        event = "VeryLazy",
+        config = function ()
+        end,
+    },
+    -- Better completion logic
     {
         'theHamsta/nvim-dap-virtual-text',
         event = "VeryLazy",
@@ -6,7 +14,7 @@ local plugins = {
             require("nvim-dap-virtual-text").setup()
         end,
     },
-        -- Better quickfix
+    -- Better quickfix
     {
         'kevinhwang91/nvim-bqf',
         event = "VeryLazy",
@@ -24,10 +32,10 @@ local plugins = {
         opts = {
         }
     },
-    {
-        "github/copilot.vim",
-        event = "VeryLazy"
-    },
+    -- {
+    --     "github/copilot.vim",
+    --     event = "VeryLazy"
+    -- },
     -- Copilot
     -- {
     --     "zbirenbaum/copilot.lua",
@@ -64,13 +72,13 @@ local plugins = {
         event = "VeryLazy",
     },
     -- Fugitive
-    {
-        "tpope/vim-fugitive",
-        event = "VeryLazy",
-        mappings = function ()
-            -- require("core.utils").load_mappings("fugitive")
-        end,
-    },
+    -- {
+    --     "tpope/vim-fugitive",
+    --     event = "VeryLazy",
+    --     mappings = function ()
+    --         -- require("core.utils").load_mappings("fugitive")
+    --     end,
+    -- },
     -- quick-scope
     {
         "unblevable/quick-scope",
@@ -112,13 +120,13 @@ local plugins = {
         end,
     },
     -- Undotree
-    -- {
-    --     lazy = false,
-    --     "mbbill/undotree",
-    --     config = function (_, _)
-    --         -- require("core.utils").load_mappings("undotree")
-    --     end
-    -- },
+    {
+        lazy = false,
+        "mbbill/undotree",
+        config = function (_, _)
+            require("core.utils").load_mappings("undotree")
+        end
+    },
     -- Task running
     {
         event = "VeryLazy",
@@ -179,11 +187,36 @@ local plugins = {
     },
     -- Format / linting
     {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimdev/guard.nvim",
+        dependencies = {
+            "nvimdev/guard-collection",
+        },
         event = "VeryLazy",
-        opts = function ()
-            return require("custom.configs.null-ls")
-        end
+        config = function ()
+            -- Setup CPP
+            local ft = require('guard.filetype')
+            ft('c,cpp,json'):fmt('clang-format')
+
+            require('guard').setup({
+                fmt_on_save = false,
+                lsp_as_default_formatter = false,
+            })
+        end,
+        mappings = function ()
+            require("core.utils").load_mappings("guard")
+        end,
+    },
+    -- {
+    --     "jose-elias-alvarez/null-ls.nvim",
+    --     event = "VeryLazy",
+    --     opts = function ()
+    --         return require("custom.configs.null-ls")
+    --     end
+    -- },
+    -- Only format modifications
+    {
+        event = "VeryLazy",
+        "joechrisellis/lsp-format-modifications.nvim"
     },
     {
         event = "VeryLazy",

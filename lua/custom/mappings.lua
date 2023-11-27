@@ -7,8 +7,16 @@ M.dap = {
         ["<F9>"] = { "<cmd> DapToggleBreakpoint <CR>", "Add breakpoint at line", },
         ["<F10>"] = { "<cmd> DapStepOver <CR>", "Step Over", },
         ["<F11>"] = { "<cmd> DapStepInto <CR>", "Step Into", },
+        ["<F12>"] = { "<cmd> DapStepOut <CR>", "Step Out", },
         ["<leader>ds"] = { "<cmd> DapTerminate <CR>", "Terminate", },
     },
+}
+
+M.undotree = {
+    plugin = true,
+    n = {
+        ["<Leader>u"] = { "<cmd> UndotreeToggle <CR>" },
+    }
 }
 
 M.dapui = {
@@ -22,6 +30,9 @@ M.dapui = {
         },
         ["<Leader>dhh"] = { ":lua require('dap.ui.variables').hover()<CR>" },
     }
+}
+
+M.harpoon = {
 }
 
 M.cmake = {
@@ -63,6 +74,8 @@ M.general = {
         ["<leader>p"] = { "\"_dP", "Paste over highlight" },
     },
     n = {
+
+        ["<leader>="] = { "<cmd> FormatModification <CR>", "Format modifications"},
         ["<leader>cc"] = { "<cmd> cc <CR>", "Show error"},
         ["<leader>cn"] = { "<cmd> cn <CR>", "Next error"},
         ["<leader>cp"] = { "<cmd> cp <CR>", "Prev error"},
@@ -86,8 +99,8 @@ M.general = {
         ["N"] = { "Nzzzv", "Search backward" },
     },
     v = {
-        ["J"] = { ":m '>+1<CR>gv=gv", "Move visual block up" },
-        ["K"] = { ":m '<-2<CR>gv=gv", "Move visual block down" },
+        -- ["J"] = { ":m '>+1<CR>gv=gv", "Move visual block up" },
+        -- ["K"] = { ":m '<-2<CR>gv=gv", "Move visual block down" },
         ["<leader>d"] = { "\"_d", "Delete word" },
     },
 }
