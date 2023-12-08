@@ -27,6 +27,8 @@ function M.setup()
 
     vim.opt.formatoptions:remove{ "c", "r", "o" }
     -- vim.opt.switchbuf = "useopen"
+
+    -- vim.g.copilot_assume_mapped = true
 end
 
 return M

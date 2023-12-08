@@ -8,6 +8,7 @@ M.dap = {
         ["<F10>"] = { "<cmd> DapStepOver <CR>", "Step Over", },
         ["<F11>"] = { "<cmd> DapStepInto <CR>", "Step Into", },
         ["<F12>"] = { "<cmd> DapStepOut <CR>", "Step Out", },
+        ["S-<F5>"] = { "<cmd> DapTerminate <CR>", "Stop debugger", },
         ["<leader>ds"] = { "<cmd> DapTerminate <CR>", "Terminate", },
     },
 }
@@ -33,6 +34,37 @@ M.dapui = {
 }
 
 M.harpoon = {
+    plugin = true,
+    n = {
+        ["<leader>ha"] = {
+            function()
+                require("harpoon.mark").add_file()
+                print("Mark")
+            end,
+            "Harpoon: Mark file",
+        },
+        ["<leader>fh"] = {
+            function()
+                require("harpoon.ui").toggle_quick_menu()
+                print("UI")
+            end,
+            "Harpoon: Toggle quick menu",
+        },
+        ["<leader>fn"] = {
+            function()
+                require("harpoon.ui").nav_next()
+                print("Next")
+            end,
+            "Harpoon: Next File",
+        },
+        ["<leader>fp"] = {
+            function()
+                require("harpoon.ui").nav_prev()
+                print("Prev")
+            end,
+            "Harpoon: Previous File",
+        },
+    }
 }
 
 M.cmake = {
@@ -74,7 +106,6 @@ M.general = {
         ["<leader>p"] = { "\"_dP", "Paste over highlight" },
     },
     n = {
-
         ["<leader>="] = { "<cmd> FormatModification <CR>", "Format modifications"},
         ["<leader>cc"] = { "<cmd> cc <CR>", "Show error"},
         ["<leader>cn"] = { "<cmd> cn <CR>", "Next error"},
@@ -89,7 +120,8 @@ M.general = {
         ["<leader>p"] = { "viwP", "Paste over word" },
         ["<leader>y"] = { "yiw", "Yank word" },
         ["<leader>c"] = { "ciw", "Change word" },
-        ["<leader>o"] = { "O<ESC>", "Add line above" },
+        ["<leader>o"] = { "o<ESC>", "Add line below" },
+        ["<leader>O"] = { "O<ESC>", "Add line above" },
         ["<leader>;"] = { "m'A;<ESC>`", "Add semi-colon at EOL" },
         ["<leader>,"] = { "m'A,<ESC>`", "Add comma at EOL" },
         ["J"] = { "mzJ`z", "Join line" },
@@ -102,6 +134,11 @@ M.general = {
         -- ["J"] = { ":m '>+1<CR>gv=gv", "Move visual block up" },
         -- ["K"] = { ":m '<-2<CR>gv=gv", "Move visual block down" },
         ["<leader>d"] = { "\"_d", "Delete word" },
+    },
+    t = {
+        -- ["J"] = { ":m '>+1<CR>gv=gv", "Move visual block up" },
+        -- ["K"] = { ":m '<-2<CR>gv=gv", "Move visual block down" },
+        ["<Esc>"] = { "<C-\\><C-N>", "Close terminal" },
     },
 }
 

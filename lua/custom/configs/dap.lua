@@ -4,7 +4,23 @@ local dap = require('dap')
 dap.configurations.cpp = {
   -- GTC
   {
-    name = "Launch GTC",
+    name = "Launch GTC1",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return "${workspaceFolder}/build/deploy/bin/rsg3000"
+    end,
+    cwd = '${workspaceFolder}/build/deploy/data',
+    args = {
+      "--role",
+      "gtc1",
+      "--data-path",
+      "/Users/joshuaweier/dev/rsg1000/data"
+    },
+    stopOnEntry = false,
+  },
+  {
+    name = "Launch GTC2",
     type = "codelldb",
     request = "launch",
     program = function()
@@ -14,6 +30,56 @@ dap.configurations.cpp = {
     args = {
       "--role",
       "gtc2",
+      "--data-path",
+      "/Users/joshuaweier/dev/rsg1000/data"
+    },
+    stopOnEntry = false,
+  },
+  {
+    name = "Launch GTC3",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return "${workspaceFolder}/build/deploy/bin/rsg3000"
+    end,
+    cwd = '${workspaceFolder}/build/deploy/data',
+    args = {
+      "--role",
+      "gtc3",
+      "--data-path",
+      "/Users/joshuaweier/dev/rsg1000/data"
+    },
+    stopOnEntry = false,
+  },
+  -- PFD
+  {
+    name = "Launch PFD",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return "${workspaceFolder}/build/deploy/bin/rsg3000"
+    end,
+    cwd = '${workspaceFolder}/build/deploy/data',
+    args = {
+      "--role",
+      "pfd",
+      "--data-path",
+      "/Users/joshuaweier/dev/rsg1000/data"
+    },
+    stopOnEntry = false,
+  },
+  -- MFD
+  {
+    name = "Launch MFD",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return "${workspaceFolder}/build/deploy/bin/rsg3000"
+    end,
+    cwd = '${workspaceFolder}/build/deploy/data',
+    args = {
+      "--role",
+      "mfd",
       "--terrain-path",
       "/Users/joshuaweier/dev/aws_dirs/tiledata",
       "--vector-path",

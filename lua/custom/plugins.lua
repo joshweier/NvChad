@@ -1,16 +1,26 @@
 local plugins = {
+    {
+        'nvimdev/lspsaga.nvim',
+        config = function()
+            require('lspsaga').setup({})
+        end,
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter', -- optional
+            'nvim-tree/nvim-web-devicons'      -- optional
+        },
+    },
     -- Session management
     {
         'tpope/vim-obsession',
         event = "VeryLazy",
-        config = function ()
+        config = function()
         end,
     },
     -- Better completion logic
     {
         'theHamsta/nvim-dap-virtual-text',
         event = "VeryLazy",
-        config = function ()
+        config = function()
             require("nvim-dap-virtual-text").setup()
         end,
     },
@@ -18,7 +28,7 @@ local plugins = {
     {
         'kevinhwang91/nvim-bqf',
         event = "VeryLazy",
-        config = function ()
+        config = function()
             require("bqf").setup({
                 auto_enable = true
             })
@@ -32,58 +42,28 @@ local plugins = {
         opts = {
         }
     },
-    -- {
-    --     "github/copilot.vim",
-    --     event = "VeryLazy"
-    -- },
-    -- Copilot
-    -- {
-    --     "zbirenbaum/copilot.lua",
-    --     cmd = "Copilot",
-    --     build = ":Copilot auth",
-    --     opts = {
-    --         suggestion = { enabled = false },
-    --         panel = { enabled = false },
-    --         filetypes = {
-    --             markdown = true,
-    --             help = true,
-    --         },
-    --     },
-    -- },
-    -- -- Copilot cmp
-    -- {
-    --     "zbirenbaum/copilot-cmp",
-    --     dependencies = "copilot.lua",
-    --     config = function(_, opts)
-    --         local copilot_cmp = require("copilot_cmp")
-    --         copilot_cmp.setup(opts)
-    --         -- attach cmp source whenever copilot attaches
-    --         -- fixes lazy-loading issues with the copilot cmp source
-    --         require("lazyvim.util").lsp.on_attach(function(client)
-    --             if client.name == "copilot" then
-    --                 copilot_cmp._on_insert_enter({})
-    --             end
-    --         end)
-    --     end,
-    -- },
+    {
+        "github/copilot.vim",
+        event = "VeryLazy"
+    },
     -- vim-surround
     {
         "tpope/vim-surround",
         event = "VeryLazy",
     },
     -- Fugitive
-    -- {
-    --     "tpope/vim-fugitive",
-    --     event = "VeryLazy",
-    --     mappings = function ()
-    --         -- require("core.utils").load_mappings("fugitive")
-    --     end,
-    -- },
-    -- quick-scope
     {
-        "unblevable/quick-scope",
+        "tpope/vim-fugitive",
         event = "VeryLazy",
+        mappings = function()
+            require("core.utils").load_mappings("fugitive")
+        end,
     },
+    -- quick-scope
+    -- {
+    --     "unblevable/quick-scope",
+    --     event = "VeryLazy",
+    -- },
     -- vim-highlightedyank
     {
         "machakann/vim-highlightedyank",
@@ -99,7 +79,7 @@ local plugins = {
     {
         event = "VeryLazy",
         "pocco81/auto-save.nvim",
-        config = function ()
+        config = function()
             require("auto-save").setup()
         end,
     },
@@ -114,7 +94,7 @@ local plugins = {
     {
         event = "VeryLazy",
         "cdelledonne/vim-cmake",
-        config = function ()
+        config = function()
             require("custom.configs.vim-cmake")
             require("core.utils").load_mappings("cmake")
         end,
@@ -123,7 +103,7 @@ local plugins = {
     {
         lazy = false,
         "mbbill/undotree",
-        config = function (_, _)
+        config = function(_, _)
             require("core.utils").load_mappings("undotree")
         end
     },
@@ -134,10 +114,10 @@ local plugins = {
         dependencies = {
             "mfussenegger/nvim-dap",
         },
-        opts = function ()
+        opts = function()
             require("custom.configs.overseer")
         end,
-        config = function (_, _)
+        config = function(_, _)
             require("core.utils").load_mappings("overseer")
         end
     },
@@ -146,18 +126,18 @@ local plugins = {
         "rcarriga/nvim-dap-ui",
         event = "VeryLazy",
         dependencies = "mfussenegger/nvim-dap",
-        config = function ()
+        config = function()
             local dap = require("dap")
             local dapui = require("dapui")
             dapui.setup()
             -- Auto opens
-            dap.listeners.after.event_initialized["dapui_config"] = function ()
+            dap.listeners.after.event_initialized["dapui_config"] = function()
                 dapui.open()
             end
-            dap.listeners.before.event_terminated["dapui_config"] = function ()
+            dap.listeners.before.event_terminated["dapui_config"] = function()
                 dapui.close()
             end
-            dap.listeners.before.event_exited["dapui_config"] = function ()
+            dap.listeners.before.event_exited["dapui_config"] = function()
                 dapui.close()
             end
 
@@ -180,7 +160,7 @@ local plugins = {
     -- Debugger integration
     {
         "mfussenegger/nvim-dap",
-        config = function (_, _)
+        config = function(_, _)
             require("custom.configs.dap")
             require("core.utils").load_mappings("dap")
         end
@@ -192,7 +172,7 @@ local plugins = {
             "nvimdev/guard-collection",
         },
         event = "VeryLazy",
-        config = function ()
+        config = function()
             -- Setup CPP
             local ft = require('guard.filetype')
             ft('c,cpp,json'):fmt('clang-format')
@@ -202,17 +182,10 @@ local plugins = {
                 lsp_as_default_formatter = false,
             })
         end,
-        mappings = function ()
+        mappings = function()
             require("core.utils").load_mappings("guard")
         end,
     },
-    -- {
-    --     "jose-elias-alvarez/null-ls.nvim",
-    --     event = "VeryLazy",
-    --     opts = function ()
-    --         return require("custom.configs.null-ls")
-    --     end
-    -- },
     -- Only format modifications
     {
         event = "VeryLazy",
@@ -226,6 +199,25 @@ local plugins = {
             require "custom.configs.lspconfig"
         end,
     },
+    {
+        event = "VeryLazy",
+        'ThePrimeagen/harpoon',
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        -- config = true,
+        config = function()
+            require("telescope").load_extension("harpoon")
+        end,
+        -- FIXME: Move out to the proper mappings
+        keys = {
+            { "<leader>hm", "<cmd>lua require('harpoon.mark').add_file()<cr>",        desc = "Mark file with harpoon" },
+            { "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>",          desc = "Go to next harpoon mark" },
+            { "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>",          desc = "Go to previous harpoon mark" },
+            { "<leader>ha", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Show harpoon marks" },
+            { "<leader>fh", "<cmd> Telescope harpoon marks <CR>",                     desc = "Telescope: Harpoon Marks" },
+        },
+    }
 }
 
 return plugins
