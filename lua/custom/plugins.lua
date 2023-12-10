@@ -88,7 +88,10 @@ local plugins = {
     --     lazy = false,
     --     "civitasv/cmake-tools.nvim",
     --     config = function ()
-    --         -- require("cmake-tools").setup()
+    --         require("cmake-tools").setup({
+    --
+    --         })
+    --         require("core.utils").load_mappings("cmake")
     --     end,
     -- },
     {
