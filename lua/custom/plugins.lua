@@ -1,4 +1,12 @@
 local plugins = {
+    -- Leap movement
+    {
+        'ggandor/leap.nvim',
+        event = "VeryLazy",
+        config = function()
+            require('leap').add_default_mappings()
+        end,
+    },
     {
         'nvimdev/lspsaga.nvim',
         config = function()
@@ -42,11 +50,12 @@ local plugins = {
         opts = {
         }
     },
+    -- Copilot
     {
         "github/copilot.vim",
         event = "VeryLazy"
     },
-    -- vim-surround
+    -- Surround
     {
         "tpope/vim-surround",
         event = "VeryLazy",
@@ -59,17 +68,12 @@ local plugins = {
             require("core.utils").load_mappings("fugitive")
         end,
     },
-    -- quick-scope
-    -- {
-    --     "unblevable/quick-scope",
-    --     event = "VeryLazy",
-    -- },
-    -- vim-highlightedyank
+    -- Highlighted yank
     {
         "machakann/vim-highlightedyank",
         event = "VeryLazy",
     },
-    -- tmux navigation
+    -- TMUX Navigation
     {
         "christoomey/vim-tmux-navigator",
         require("core.utils").load_mappings("tmuxnavigator"),
@@ -77,26 +81,16 @@ local plugins = {
     },
     -- Autosave
     {
-        event = "VeryLazy",
         "pocco81/auto-save.nvim",
+        event = "VeryLazy",
         config = function()
             require("auto-save").setup()
         end,
     },
-    -- CMake tools
-    -- {
-    --     lazy = false,
-    --     "civitasv/cmake-tools.nvim",
-    --     config = function ()
-    --         require("cmake-tools").setup({
-    --
-    --         })
-    --         require("core.utils").load_mappings("cmake")
-    --     end,
-    -- },
+    -- CMake
     {
-        event = "VeryLazy",
         "cdelledonne/vim-cmake",
+        event = "VeryLazy",
         config = function()
             require("custom.configs.vim-cmake")
             require("core.utils").load_mappings("cmake")
@@ -104,16 +98,16 @@ local plugins = {
     },
     -- Undotree
     {
-        lazy = false,
         "mbbill/undotree",
+        lazy = false,
         config = function(_, _)
             require("core.utils").load_mappings("undotree")
         end
     },
     -- Task running
     {
-        event = "VeryLazy",
         'stevearc/overseer.nvim',
+        event = "VeryLazy",
         dependencies = {
             "mfussenegger/nvim-dap",
         },
@@ -194,6 +188,7 @@ local plugins = {
         event = "VeryLazy",
         "joechrisellis/lsp-format-modifications.nvim"
     },
+    -- LSP Helper
     {
         event = "VeryLazy",
         "neovim/nvim-lspconfig",
@@ -202,25 +197,31 @@ local plugins = {
             require "custom.configs.lspconfig"
         end,
     },
+    -- Mark handling in Telescope
     {
-        event = "VeryLazy",
-        'ThePrimeagen/harpoon',
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        -- config = true,
-        config = function()
-            require("telescope").load_extension("harpoon")
-        end,
-        -- FIXME: Move out to the proper mappings
-        keys = {
-            { "<leader>hm", "<cmd>lua require('harpoon.mark').add_file()<cr>",        desc = "Mark file with harpoon" },
-            { "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>",          desc = "Go to next harpoon mark" },
-            { "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>",          desc = "Go to previous harpoon mark" },
-            { "<leader>ha", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Show harpoon marks" },
-            { "<leader>fh", "<cmd> Telescope harpoon marks <CR>",                     desc = "Telescope: Harpoon Marks" },
-        },
-    }
+        "chentoast/marks.nvim",
+        event = "BufReadPre",
+        opts = {}
+    },
+    -- {
+    --     event = "VeryLazy",
+    --     'ThePrimeagen/harpoon',
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim",
+    --     },
+    --     -- config = true,
+    --     config = function()
+    --         require("telescope").load_extension("harpoon")
+    --     end,
+    --     -- FIXME: Move out to the proper mappings
+    --     keys = {
+    --         { "<leader>hm", "<cmd>lua require('harpoon.mark').add_file()<cr>",        desc = "Mark file with harpoon" },
+    --         { "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>",          desc = "Go to next harpoon mark" },
+    --         { "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>",          desc = "Go to previous harpoon mark" },
+    --         { "<leader>ha", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Show harpoon marks" },
+    --         { "<leader>fh", "<cmd> Telescope harpoon marks <CR>",                     desc = "Telescope: Harpoon Marks" },
+    --     },
+    -- }
 }
 
 return plugins

@@ -8,7 +8,18 @@ M.dap = {
         ["<F10>"] = { "<cmd> DapStepOver <CR>", "Step Over", },
         ["<F11>"] = { "<cmd> DapStepInto <CR>", "Step Into", },
         ["<F12>"] = { "<cmd> DapStepOut <CR>", "Step Out", },
-        ["S-<F5>"] = { "<cmd> DapTerminate <CR>", "Stop debugger", },
+        ["<F6>"] = {
+            function()
+                require("dap").run_last()
+            end,
+            "Run again",
+        },
+        ["<leader>dr"] = {
+            function()
+                require("dap").repl.open()
+            end,
+            "Open the DAP REPL"
+        },
         ["<leader>ds"] = { "<cmd> DapTerminate <CR>", "Terminate", },
     },
 }
@@ -29,7 +40,11 @@ M.dapui = {
             end,
             "Toggle the DAP UI"
         },
-        ["<Leader>dhh"] = { ":lua require('dap.ui.variables').hover()<CR>" },
+        ["<Leader>dhh"] = {
+            function()
+                require('dap.ui.variables').hover()
+            end,
+        }
     }
 }
 
@@ -72,8 +87,8 @@ M.cmake = {
     n = {
         -- ["<F7>"] = { "<cmd> CMakeBuild <CR>", "Build current target", },
         ["<F7>"] = { "<cmd> CMakeBuild <CR>", "Build current target", },
-        ["<leader><Esc>"] = { "<cmd> CMakeClose <CR>", "Close the terminal window", },
-        ["<leader>ci"] = { "<cmd> CMakeInstall <CR>", "Install", },
+        -- ["<leader><Esc>"] = { "<cmd> CMakeClose <CR>", "Close the terminal window", },
+        -- ["<leader>ci"] = { "<cmd> CMakeInstall <CR>", "Install", },
     }
 }
 
@@ -117,6 +132,7 @@ M.general = {
         ["<F4>"] = { "<cmd> ClangdSwitchSourceHeader <CR>", "Toggle header / source" },
         ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Change word under cursor" },
         ["Q"] = { "<nop>", "Never do this!" },
+        ["q"] = { "<nop>", "No macro recording" },
         ["<leader>d"] = { "\"_d", "Delete word" },
         ["<leader>p"] = { "viwP", "Paste over word" },
         ["<leader>y"] = { "yiw", "Yank word" },

@@ -31,7 +31,7 @@ M.ui = {
 
   ------------------------------- nvchad_ui modules -----------------------------
   statusline = {
-    theme = "default", -- default/vscode/vscode_colored/minimal
+    theme = "vscode_colored", -- default/vscode/vscode_colored/minimal
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
     separator_style = "default",
@@ -41,7 +41,7 @@ M.ui = {
   -- lazyload it when there are 1+ buffers
   tabufline = {
     show_numbers = false,
-    enabled = true,
+    enabled = false,
     lazyload = true,
     overriden_modules = nil,
   },
@@ -77,7 +77,7 @@ M.ui = {
   lsp = {
     -- show function signatures i.e args as you type
     signature = {
-      disabled = false,
+      disabled = true,
       silent = true, -- silences 'no signature help available' message from appearing
     },
   },

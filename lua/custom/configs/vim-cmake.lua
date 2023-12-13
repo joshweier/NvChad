@@ -11,6 +11,7 @@ vim.api.nvim_create_autocmd("User", {
         print("Build succeeded")
         vim.cmd("CMakeInstall")
         vim.cmd("CMakeClose")
+        vim.cmd("cclose")
     end,
     group = cmakeGroup
 })
