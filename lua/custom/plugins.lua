@@ -203,7 +203,34 @@ local plugins = {
         event = "BufReadPre",
         opts = {}
     },
-    -- {
+    -- Close buffers
+    {
+        "axkirillov/hbac.nvim",
+        event = "VeryLazy",
+        opts = {
+            autoclose = true,
+            threshold = 10,
+        },
+    },
+    {
+        "m4xshen/hardtime.nvim",
+        event = "VeryLazy",
+        dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+        opts = {}
+    },
+    {
+        "tzachar/highlight-undo.nvim",
+        event = "VeryLazy",
+        opts = {},
+    },
+    {
+        "sustech-data/wildfire.nvim",
+        event = "VeryLazy",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        config = function()
+            require("wildfire").setup()
+        end,
+    } -- {
     --     event = "VeryLazy",
     --     'ThePrimeagen/harpoon',
     --     dependencies = {

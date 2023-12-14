@@ -42,7 +42,7 @@ M.dapui = {
         },
         ["<Leader>dhh"] = {
             function()
-                require('dap.ui.variables').hover()
+                require('dap.ui.widgets').hover()
             end,
         }
     }
