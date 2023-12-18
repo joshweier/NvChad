@@ -85,10 +85,7 @@ M.harpoon = {
 M.cmake = {
     plugin = true,
     n = {
-        -- ["<F7>"] = { "<cmd> CMakeBuild <CR>", "Build current target", },
         ["<F7>"] = { "<cmd> CMakeBuild <CR>", "Build current target", },
-        -- ["<leader><Esc>"] = { "<cmd> CMakeClose <CR>", "Close the terminal window", },
-        -- ["<leader>ci"] = { "<cmd> CMakeInstall <CR>", "Install", },
     }
 }
 

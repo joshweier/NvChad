@@ -129,7 +129,7 @@ local plugins = {
             dapui.setup()
             -- Auto opens
             dap.listeners.after.event_initialized["dapui_config"] = function()
-                dapui.open()
+                -- dapui.open()
             end
             dap.listeners.before.event_terminated["dapui_config"] = function()
                 dapui.close()
@@ -212,43 +212,70 @@ local plugins = {
             threshold = 10,
         },
     },
+    -- Force better Vim discipline
     {
         "m4xshen/hardtime.nvim",
+        enabled = false,
         event = "VeryLazy",
         dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
         opts = {}
     },
+    -- Show undo
     {
         "tzachar/highlight-undo.nvim",
         event = "VeryLazy",
         opts = {},
     },
+    -- Add text objects from treesitter
     {
-        "sustech-data/wildfire.nvim",
-        event = "VeryLazy",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        lazy = true,
         config = function()
-            require("wildfire").setup()
+            require("nvim-treesitter.configs").setup({
+                textobjects = {
+                    lsp_interop = {
+                        enable = true,
+                        peek_definition_code = {
+                            ["<leader>df"] = "@function.outer",
+                            ["<leader>dF"] = "@class.outer",
+                        },
+                    },
+
+                    select = {
+                        enable = true,
+
+                        -- Automatically jump forward to textobj, similar to targets.vim
+                        lookahead = true,
+
+                        keymaps = {
+                            ["a="] = { query = "@assignment.outer", desc = "Select outer part of an assignment" },
+                            ["i="] = { query = "@assignment.inner", desc = "Select inner part of an assignment" },
+                            ["l="] = { query = "@assignment.lhs", desc = "Select left hand side of an assignment" },
+                            ["r="] = { query = "@assignment.rhs", desc = "Select right hand side of an assignment" },
+
+                            ["aa"] = { query = "@parameter.outer", desc = "Select outer part of a parameter/argument" },
+                            ["ia"] = { query = "@parameter.inner", desc = "Select inner part of a parameter/argument" },
+
+                            ["ai"] = { query = "@conditional.outer", desc = "Select outer part of a conditional" },
+                            ["ii"] = { query = "@conditional.inner", desc = "Select inner part of a conditional" },
+
+                            ["al"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
+                            ["il"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
+
+                            ["af"] = { query = "@call.outer", desc = "Select outer part of a function call" },
+                            ["if"] = { query = "@call.inner", desc = "Select inner part of a function call" },
+
+                            ["am"] = { query = "@function.outer", desc = "Select outer part of a method/function definition" },
+                            ["im"] = { query = "@function.inner", desc = "Select inner part of a method/function definition" },
+
+                            ["ac"] = { query = "@class.outer", desc = "Select outer part of a class" },
+                            ["ic"] = { query = "@class.inner", desc = "Select inner part of a class" },
+                        },
+                    },
+                },
+            })
         end,
-    } -- {
-    --     event = "VeryLazy",
-    --     'ThePrimeagen/harpoon',
-    --     dependencies = {
-    --         "nvim-lua/plenary.nvim",
-    --     },
-    --     -- config = true,
-    --     config = function()
-    --         require("telescope").load_extension("harpoon")
-    --     end,
-    --     -- FIXME: Move out to the proper mappings
-    --     keys = {
-    --         { "<leader>hm", "<cmd>lua require('harpoon.mark').add_file()<cr>",        desc = "Mark file with harpoon" },
-    --         { "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>",          desc = "Go to next harpoon mark" },
-    --         { "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>",          desc = "Go to previous harpoon mark" },
-    --         { "<leader>ha", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Show harpoon marks" },
-    --         { "<leader>fh", "<cmd> Telescope harpoon marks <CR>",                     desc = "Telescope: Harpoon Marks" },
-    --     },
-    -- }
+    },
 }
 
 return plugins
