@@ -55,6 +55,7 @@ local options = {
         buffers = {
             show_all_buffers = false,
             sort_mru = true,
+            ignore_current_buffer = true,
             mappings = {
                 i = {
                     ["<c-d>"] = "delete_buffer",

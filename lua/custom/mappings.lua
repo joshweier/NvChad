@@ -21,6 +21,26 @@ M.dap = {
             "Open the DAP REPL"
         },
         ["<leader>ds"] = { "<cmd> DapTerminate <CR>", "Terminate", },
+        ["<leader>dh"] = {
+            function()
+                require("dap.ui.widgets").hover()
+            end,
+            "Get info"
+        },
+        ["<leader>df"] = {
+            function()
+                local widgets = require('dap.ui.widgets')
+                widgets.centered_float(widgets.frames)
+            end,
+            "Show frames"
+        },
+        ["<leader>dp"] = {
+            function()
+                local widgets = require('dap.ui.widgets')
+                widgets.centered_float(widgets.scopes)
+            end,
+            "Show scopes"
+        },
     },
 }
 
@@ -48,39 +68,39 @@ M.dapui = {
     }
 }
 
-M.harpoon = {
-    plugin = true,
-    n = {
-        ["<leader>ha"] = {
-            function()
-                require("harpoon.mark").add_file()
-                print("Mark")
-            end,
-            "Harpoon: Mark file",
-        },
-        ["<leader>fh"] = {
-            function()
-                require("harpoon.ui").toggle_quick_menu()
-                print("UI")
-            end,
-            "Harpoon: Toggle quick menu",
-        },
-        ["<leader>fn"] = {
-            function()
-                require("harpoon.ui").nav_next()
-                print("Next")
-            end,
-            "Harpoon: Next File",
-        },
-        ["<leader>fp"] = {
-            function()
-                require("harpoon.ui").nav_prev()
-                print("Prev")
-            end,
-            "Harpoon: Previous File",
-        },
-    }
-}
+-- M.harpoon = {
+--     plugin = true,
+--     n = {
+--         ["<leader>ha"] = {
+--             function()
+--                 require("harpoon.mark").add_file()
+--                 print("Mark")
+--             end,
+--             "Harpoon: Mark file",
+--         },
+--         ["<leader>fh"] = {
+--             function()
+--                 require("harpoon.ui").toggle_quick_menu()
+--                 print("UI")
+--             end,
+--             "Harpoon: Toggle quick menu",
+--         },
+--         ["<leader>fn"] = {
+--             function()
+--                 require("harpoon.ui").nav_next()
+--                 print("Next")
+--             end,
+--             "Harpoon: Next File",
+--         },
+--         ["<leader>fp"] = {
+--             function()
+--                 require("harpoon.ui").nav_prev()
+--                 print("Prev")
+--             end,
+--             "Harpoon: Previous File",
+--         },
+--     }
+-- }
 
 M.cmake = {
     plugin = true,
@@ -143,6 +163,8 @@ M.general = {
         ["<C-u>"] = { "<C-u>zz", "Move half page up" },
         ["n"] = { "nzzzv", "Search forward" },
         ["N"] = { "Nzzzv", "Search backward" },
+        ["<leader>do"] = { "<cmd> DiffviewOpen <CR>", "Open DiffView" },
+        ["<leader>dc"] = { "<cmd> DiffviewClose <CR>", "Close DiffView" },
     },
     v = {
         -- ["J"] = { ":m '>+1<CR>gv=gv", "Move visual block up" },

@@ -29,6 +29,7 @@ function M.setup()
     -- vim.opt.switchbuf = "useopen"
 
     -- vim.g.copilot_assume_mapped = true
+    vim.g.octo_viewer = "joshweier"
 end
 
 return M

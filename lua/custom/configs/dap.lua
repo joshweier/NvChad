@@ -62,7 +62,7 @@ dap.configurations.cpp = {
     cwd = '${workspaceFolder}/build/deploy/data',
     args = {
       "--role",
-      "pfd",
+      "pfd1",
       "--data-path",
       "/Users/joshuaweier/dev/rsg1000/data"
     },
