@@ -26,11 +26,4 @@ lspconfig.clangd.setup {
 lspconfig.yamlls.setup {
   on_attach = configs.on_attach,
   capabilities = configs.capabilities,
-  -- settings = {
-  --   yaml = {
-  --     schemas = {
-  --       ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.yaml"] = "/*"
-  --     }
-  --   }
-  -- }
 }

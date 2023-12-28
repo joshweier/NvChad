@@ -8,7 +8,7 @@ function M.setup()
     vim.opt.softtabstop = 4
     vim.opt.shiftwidth = 4
     vim.opt.expandtab = true
-
+    vim.opt.autoindent = true
     vim.opt.smartindent = false
     vim.opt.wrap = false
     vim.opt.swapfile = false
@@ -18,17 +18,20 @@ function M.setup()
 
     vim.opt.hlsearch = false
     vim.opt.incsearch = true
+    vim.opt.smartcase = true
 
     vim.opt.termguicolors = true
 
+    vim.opt.cursorline = true
     vim.opt.scrolloff = 8
+    vim.opt.sidescrolloff = 4
 
     vim.g.mapleader = " "
 
-    vim.opt.formatoptions:remove{ "c", "r", "o" }
-    -- vim.opt.switchbuf = "useopen"
+    vim.lsp.set_log_level("off")
 
-    -- vim.g.copilot_assume_mapped = true
+    vim.opt.formatoptions:remove { "c", "r", "o" }
+
     vim.g.octo_viewer = "joshweier"
 end
 

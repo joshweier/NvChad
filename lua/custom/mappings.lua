@@ -8,6 +8,7 @@ M.dap = {
         ["<F10>"] = { "<cmd> DapStepOver <CR>", "Step Over", },
         ["<F11>"] = { "<cmd> DapStepInto <CR>", "Step Into", },
         ["<F12>"] = { "<cmd> DapStepOut <CR>", "Step Out", },
+        ["<leader>pc"] = { "<cmd> pclose <CR>", "Close preview", },
         ["<F6>"] = {
             function()
                 require("dap").run_last()
@@ -23,7 +24,7 @@ M.dap = {
         ["<leader>ds"] = { "<cmd> DapTerminate <CR>", "Terminate", },
         ["<leader>dh"] = {
             function()
-                require("dap.ui.widgets").hover()
+                require("dap.ui.widgets").preview()
             end,
             "Get info"
         },

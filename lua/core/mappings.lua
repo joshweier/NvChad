@@ -281,16 +281,16 @@ M.telescope = {
         ["<leader>fw"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
         ["<leader>fd"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
         ["<leader>fc"] = { "<cmd> Telescope commands <CR>", "Commands" },
-        -- Prefer for Harpoon
-        -- ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
+        ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
         ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
         ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
+        ["<leader>fu"] = { "<cmd> Telescope undo <CR>", "Find in undo history" },
 
         -- git
         ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
         ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },
-        ["<leader>gr"] = { "<cmd> Telescope git_branches <CR>", "Git branches" },
-        ["<leader>gh"] = { "<cmd> Telescope git_stash <CR>", "Git stashes" },
+        ["<leader>gb"] = { "<cmd> Telescope git_branches <CR>", "Git branches" },
+        ["<leade>gs"] = { "<cmd> Telescope git_stash <CR>", "Git stashes" },
 
         -- pick a hidden term
         ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
@@ -459,7 +459,7 @@ M.gitsigns = {
             "Preview hunk",
         },
 
-        ["<leader>gb"] = {
+        ["<leader>bl"] = {
             function()
                 package.loaded.gitsigns.blame_line()
             end,

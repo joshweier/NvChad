@@ -27,7 +27,7 @@ M.ui = {
     selected_item_bg = "colored", -- colored / simple
   },
 
-  telescope = { style = "borderless" }, -- borderless / bordered
+  telescope = { style = "bordered" }, -- borderless / bordered
 
   ------------------------------- nvchad_ui modules -----------------------------
   statusline = {
@@ -77,7 +77,7 @@ M.ui = {
   lsp = {
     -- show function signatures i.e args as you type
     signature = {
-      disabled = true,
+      disabled = false,
       silent = true, -- silences 'no signature help available' message from appearing
     },
   },

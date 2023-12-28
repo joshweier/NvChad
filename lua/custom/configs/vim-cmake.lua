@@ -8,10 +8,10 @@ local cmakeGroup = vim.api.nvim_create_augroup("cmakeGroup", {})
 vim.api.nvim_create_autocmd("User", {
     pattern = 'CMakeBuildSucceeded',
     callback = function()
-        print("Build succeeded")
+        vim.notify("Build succeeded")
         vim.cmd("CMakeInstall")
         vim.cmd("CMakeClose")
-        vim.cmd("cclose")
+        vim.cmd("TroubleClose")
     end,
     group = cmakeGroup
 })
@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd("User", {
     pattern = 'CMakeBuildFailed',
     callback = function()
         vim.cmd("CMakeClose")
-        vim.cmd("copen")
+        vim.cmd("Trouble")
     end,
     group = cmakeGroup
 })

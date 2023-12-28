@@ -7,16 +7,16 @@ local plugins = {
             require('leap').add_default_mappings()
         end,
     },
-    {
-        'nvimdev/lspsaga.nvim',
-        config = function()
-            require('lspsaga').setup({})
-        end,
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter', -- optional
-            'nvim-tree/nvim-web-devicons'      -- optional
-        },
-    },
+    -- {
+    --     'nvimdev/lspsaga.nvim',
+    --     config = function()
+    --         require('lspsaga').setup({})
+    --     end,
+    --     dependencies = {
+    --         'nvim-treesitter/nvim-treesitter', -- optional
+    --         'nvim-tree/nvim-web-devicons'      -- optional
+    --     },
+    -- },
     -- Session management
     {
         'tpope/vim-obsession',
@@ -213,13 +213,13 @@ local plugins = {
         },
     },
     -- Force better Vim discipline
-    {
-        "m4xshen/hardtime.nvim",
-        enabled = false,
-        event = "VeryLazy",
-        dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-        opts = {}
-    },
+    -- {
+    --     "m4xshen/hardtime.nvim",
+    --     enabled = false,
+    --     event = "VeryLazy",
+    --     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    --     opts = {}
+    -- },
     -- Show undo
     {
         "tzachar/highlight-undo.nvim",
@@ -231,6 +231,15 @@ local plugins = {
         "sindrets/diffview.nvim",
         event = "VeryLazy",
         opts = {},
+    },
+    -- Notifications
+    {
+        "rcarriga/nvim-notify",
+        event = "VeryLazy",
+        config = function()
+            require "notify".setup()
+            vim.notify = require("notify")
+        end,
     },
     -- Github Issue / PR integration
     {
@@ -248,6 +257,48 @@ local plugins = {
         end,
         keys = {
             { "<leader>to", "<cmd>Octo<cr>" },
+        },
+    },
+    {
+        "debugloop/telescope-undo.nvim",
+        dependencies = { -- note how they're inverted to above example
+            {
+                "nvim-telescope/telescope.nvim",
+                dependencies = { "nvim-lua/plenary.nvim" },
+            },
+        },
+        keys = {
+            { -- lazy style key map
+                "<leader>tu",
+                "<cmd>Telescope undo<cr>",
+                desc = "undo history",
+            },
+        },
+        opts = {
+            -- don't use `defaults = { }` here, do this in the main telescope spec
+            extensions = {
+                undo = {
+                    -- telescope-undo.nvim config, see below
+                },
+                -- no other extensions here, they can have their own spec too
+            },
+        },
+        config = function(_, opts)
+            -- Calling telescope's setup from multiple specs does not hurt, it will happily merge the
+            -- configs for us. We won't use data, as everything is in it's own namespace (telescope
+            -- defaults, as well as each extension).
+            require("telescope").setup(opts)
+            require("telescope").load_extension("undo")
+        end,
+    },
+    -- Error helper
+    {
+        "folke/trouble.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
         },
     },
     -- Add text objects from treesitter
