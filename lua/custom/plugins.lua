@@ -237,7 +237,9 @@ local plugins = {
         "rcarriga/nvim-notify",
         event = "VeryLazy",
         config = function()
-            require "notify".setup()
+            require "notify".setup({
+                background_colour = "#000000",
+            })
             vim.notify = require("notify")
         end,
     },
@@ -294,6 +296,7 @@ local plugins = {
     -- Error helper
     {
         "folke/trouble.nvim",
+        event = "VeryLazy",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {
             -- your configuration comes here

@@ -107,6 +107,8 @@ M.cmake = {
     plugin = true,
     n = {
         ["<F7>"] = { "<cmd> CMakeBuild <CR>", "Build current target", },
+        ["<leader>mo"] = { "<cmd> CMakeOpen <CR>", "Open the CMake terminal", },
+        ["<leader>mc"] = { "<cmd> CMakeClose <CR>", "Close the CMake terminal", },
     }
 }
 
@@ -140,6 +142,7 @@ M.general = {
         ["<leader>p"] = { "\"_dP", "Paste over highlight" },
     },
     n = {
+        ["<leader>tc"] = { "<cmd> TroubleClose <CR>", "Close Trouble" },
         ["<leader>="] = { "<cmd> FormatModification <CR>", "Format modifications" },
         ["<leader>cc"] = { "<cmd> cc <CR>", "Show error" },
         ["<leader>cn"] = { "<cmd> cn <CR>", "Next error" },
