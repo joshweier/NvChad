@@ -65,6 +65,8 @@ local options = {
     },
     extensions_list = { "themes", "terms", "fzf" },
     extensions = {
+        advanced_git_search = {
+        },
         fzf = {
             fuzzy = true,
             override_generic_sorter = true,

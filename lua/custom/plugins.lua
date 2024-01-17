@@ -4,7 +4,7 @@ local plugins = {
         'ggandor/leap.nvim',
         event = "VeryLazy",
         config = function()
-            require('leap').add_default_mappings()
+            -- require('leap').add_default_mappings()
         end,
     },
     -- {
@@ -76,8 +76,8 @@ local plugins = {
     -- TMUX Navigation
     {
         "christoomey/vim-tmux-navigator",
-        require("core.utils").load_mappings("tmuxnavigator"),
         event = "VeryLazy",
+        require("core.utils").load_mappings("tmuxnavigator"),
     },
     -- Autosave
     {
@@ -99,7 +99,7 @@ local plugins = {
     -- Undotree
     {
         "mbbill/undotree",
-        lazy = false,
+        event = "VeryLazy",
         config = function(_, _)
             require("core.utils").load_mappings("undotree")
         end
@@ -157,6 +157,7 @@ local plugins = {
     -- Debugger integration
     {
         "mfussenegger/nvim-dap",
+        event = "VeryLazy",
         config = function(_, _)
             require("custom.configs.dap")
             require("core.utils").load_mappings("dap")
@@ -165,10 +166,10 @@ local plugins = {
     -- Format / linting
     {
         "nvimdev/guard.nvim",
+        event = "VeryLazy",
         dependencies = {
             "nvimdev/guard-collection",
         },
-        event = "VeryLazy",
         config = function()
             -- Setup CPP
             local ft = require('guard.filetype')
@@ -184,14 +185,14 @@ local plugins = {
         end,
     },
     -- Only format modifications
-    {
-        event = "VeryLazy",
-        "joechrisellis/lsp-format-modifications.nvim"
-    },
+    -- {
+    --     event = "VeryLazy",
+    --     "joechrisellis/lsp-format-modifications.nvim"
+    -- },
     -- LSP Helper
     {
-        event = "VeryLazy",
         "neovim/nvim-lspconfig",
+        event = "VeryLazy",
         config = function()
             require "plugins.configs.lspconfig"
             require "custom.configs.lspconfig"
@@ -201,25 +202,31 @@ local plugins = {
     {
         "chentoast/marks.nvim",
         event = "BufReadPre",
+        lazy = false,
         opts = {}
     },
     -- Close buffers
     {
-        "axkirillov/hbac.nvim",
+        "chrisgrieser/nvim-early-retirement",
+        config = true,
         event = "VeryLazy",
-        opts = {
-            autoclose = true,
-            threshold = 10,
-        },
     },
-    -- Force better Vim discipline
     -- {
-    --     "m4xshen/hardtime.nvim",
-    --     enabled = false,
+    --     "axkirillov/hbac.nvim",
     --     event = "VeryLazy",
-    --     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    --     opts = {}
+    --     opts = {
+    --         autoclose = true,
+    --         threshold = 10,
+    --     },
     -- },
+    -- Force better Vim discipline
+    {
+        "m4xshen/hardtime.nvim",
+        event = "VeryLazy",
+        -- enabled = false,
+        dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+        opts = {}
+    },
     -- Show undo
     {
         "tzachar/highlight-undo.nvim",
@@ -263,6 +270,7 @@ local plugins = {
     },
     {
         "debugloop/telescope-undo.nvim",
+        event = "VeryLazy",
         dependencies = { -- note how they're inverted to above example
             {
                 "nvim-telescope/telescope.nvim",
@@ -299,15 +307,20 @@ local plugins = {
         event = "VeryLazy",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
         },
+    },
+    -- Git search with history
+    {
+        "aaronhallaert/advanced-git-search.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("telescope").load_extension("advanced_git_search")
+        end,
     },
     -- Add text objects from treesitter
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        lazy = true,
+        event = "VeryLazy",
         config = function()
             require("nvim-treesitter.configs").setup({
                 textobjects = {

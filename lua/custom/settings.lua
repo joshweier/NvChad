@@ -33,6 +33,9 @@ function M.setup()
     vim.opt.formatoptions:remove { "c", "r", "o" }
 
     vim.g.octo_viewer = "joshweier"
+
+    vim.keymap.set({'n', 'x', 'o'}, 'f', '<Plug>(leap-forward)')
+    vim.keymap.set({'n', 'x', 'o'}, 'F', '<Plug>(leap-backward)')
 end
 
 return M
