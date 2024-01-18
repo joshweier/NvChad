@@ -4,7 +4,16 @@ local plugins = {
         'ggandor/leap.nvim',
         event = "VeryLazy",
         config = function()
-            -- require('leap').add_default_mappings()
+            require('leap').add_default_mappings()
+        end,
+    },
+    {
+        'ggandor/flit.nvim',
+        event = "VeryLazy",
+        config = function()
+            require('flit').setup{
+                labeled_modes = "nvo"
+            }
         end,
     },
     -- {
