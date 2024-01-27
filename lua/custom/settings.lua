@@ -34,8 +34,7 @@ function M.setup()
 
     vim.g.octo_viewer = "joshweier"
 
-    -- vim.keymap.set({'n', 'x', 'o'}, 'f', '<Plug>(leap-forward)')
-    -- vim.keymap.set({'n', 'x', 'o'}, 'F', '<Plug>(leap-backward)')
+    -- vim.api.nvim_set_keymap('n', '<CR>', '<cmd>FineCmdline<CR>', { noremap = true })
 end
 
 return M

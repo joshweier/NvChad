@@ -107,8 +107,8 @@ M.cmake = {
     plugin = true,
     n = {
         ["<F7>"] = { "<cmd> CMakeBuild <CR>", "Build current target", },
-        ["<leader>mo"] = { "<cmd> CMakeOpen <CR>", "Open the CMake terminal", },
-        ["<leader>mc"] = { "<cmd> CMakeClose <CR>", "Close the CMake terminal", },
+        ["<leader>mo"] = { "<cmd> CMakeToggle <CR>", "Toggle the CMake terminal", },
+        -- ["<leader>mc"] = { "<cmd> CMakeClose <CR>", "Close the CMake terminal", },
     }
 }
 

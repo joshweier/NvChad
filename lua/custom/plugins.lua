@@ -1,4 +1,29 @@
 local plugins = {
+    -- Repeatable motions
+    {
+        "tpope/vim-repeat",
+        event = "VeryLazy",
+    },
+    -- New command line
+    {
+        "utilyre/barbecue.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "SmiteshP/nvim-navic",
+            "nvim-tree/nvim-web-devicons", -- optional dependency
+        },
+        opts = {
+            -- configurations go here
+        },
+    },
+    {
+        'VonHeikemen/fine-cmdline.nvim',
+        event = "VeryLazy",
+        dependencies = { 'MunifTanjim/nui.nvim' },
+        config = function()
+            require('fine-cmdline').setup({})
+        end,
+    },
     -- Leap movement
     {
         'ggandor/leap.nvim',
@@ -7,25 +32,16 @@ local plugins = {
             require('leap').add_default_mappings()
         end,
     },
+    -- Flit (Leap extension)
     {
         'ggandor/flit.nvim',
         event = "VeryLazy",
         config = function()
-            require('flit').setup{
+            require('flit').setup {
                 labeled_modes = "nvo"
             }
         end,
     },
-    -- {
-    --     'nvimdev/lspsaga.nvim',
-    --     config = function()
-    --         require('lspsaga').setup({})
-    --     end,
-    --     dependencies = {
-    --         'nvim-treesitter/nvim-treesitter', -- optional
-    --         'nvim-tree/nvim-web-devicons'      -- optional
-    --     },
-    -- },
     -- Session management
     {
         'tpope/vim-obsession',
@@ -64,10 +80,14 @@ local plugins = {
         "github/copilot.vim",
         event = "VeryLazy"
     },
-    -- Surround
     {
-        "tpope/vim-surround",
+        "kylechui/nvim-surround",
         event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
     },
     -- Fugitive
     {
@@ -193,11 +213,6 @@ local plugins = {
             require("core.utils").load_mappings("guard")
         end,
     },
-    -- Only format modifications
-    -- {
-    --     event = "VeryLazy",
-    --     "joechrisellis/lsp-format-modifications.nvim"
-    -- },
     -- LSP Helper
     {
         "neovim/nvim-lspconfig",
@@ -229,13 +244,14 @@ local plugins = {
     --     },
     -- },
     -- Force better Vim discipline
-    {
-        "m4xshen/hardtime.nvim",
-        event = "VeryLazy",
-        -- enabled = false,
-        dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-        opts = {}
-    },
+    -- {
+    --     "m4xshen/hardtime.nvim",
+    --     enabled = false,
+    --     event = "VeryLazy",
+    --     -- enabled = false,
+    --     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    --     opts = {}
+    -- },
     -- Show undo
     {
         "tzachar/highlight-undo.nvim",
@@ -309,6 +325,14 @@ local plugins = {
             require("telescope").setup(opts)
             require("telescope").load_extension("undo")
         end,
+    },
+    -- Lazygit
+    {
+        "kdheepak/lazygit.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
     },
     -- Error helper
     {
