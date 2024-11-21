@@ -35,6 +35,21 @@ function M.setup()
     vim.g.octo_viewer = "joshweier"
 
     -- vim.api.nvim_set_keymap('n', '<CR>', '<cmd>FineCmdline<CR>', { noremap = true })
+
+-- Guard updater
+-- local ft = require('guard.filetype')
+-- ft('c,cpp'):fmt('clang-format')
+
+-- change this anywhere in your config, these are the defaults
+vim.g.guard_config = {
+    -- format on write to buffer
+    fmt_on_save = true,
+    -- use lsp if no formatter was defined for this filetype
+    lsp_as_default_formatter = false,
+    -- whether or not to save the buffer after formatting
+    save_on_fmt = true,
+}
+
 end
 
 return M

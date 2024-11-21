@@ -249,16 +249,17 @@ local plugins = {
         dependencies = {
             "nvimdev/guard-collection",
         },
-        config = function()
+        ft = {"lua", "c", "cpp", "json", "markdown"},
+        -- config = function()
             -- Setup CPP
-            local ft = require('guard.filetype')
-            ft('c,cpp,json'):fmt('clang-format')
+            -- local ft = require('guard.filetype')
+            -- ft('c,cpp,json'):fmt('clang-format')
 
-            require('guard').setup({
-                fmt_on_save = false,
-                lsp_as_default_formatter = false,
-            })
-        end,
+            -- require('guard').setup({
+                -- fmt_on_save = false,
+                -- lsp_as_default_formatter = false,
+            -- })
+        -- end,
         mappings = function()
             require("core.utils").load_mappings("guard")
         end,
@@ -398,6 +399,18 @@ local plugins = {
         event = "VeryLazy",
         config = function()
             require("telescope").load_extension("advanced_git_search")
+        end,
+    },
+    { 
+	"nvim-neotest/nvim-nio",
+        event = "VeryLazy",
+    },
+    {
+	"nvim-telescope/telescope-fzf-native.nvim",
+  	event = "VeryLazy",
+	build = "make",
+        config = function()
+            require("telescope").load_extension("fzf")
         end,
     },
     -- Add text objects from treesitter
