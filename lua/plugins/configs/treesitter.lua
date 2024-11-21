@@ -3,6 +3,9 @@ local options = {
         "lua",
         "cpp",
         "c",
+        "javascript",
+        "css",
+        "html"
     },
 
     incremental_selection = {

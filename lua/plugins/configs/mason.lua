@@ -6,6 +6,7 @@ local options = {
         "codelldb",
         "yamlfmt",
         "yaml-language-server",
+        "eslint-lsp"
     }, -- not an option from mason.nvim
 
     PATH = "skip",

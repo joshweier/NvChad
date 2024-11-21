@@ -22,8 +22,6 @@ lspconfig.clangd.setup {
     },
 }
 
--- Configure yamlls ls:
-lspconfig.yamlls.setup {
-  on_attach = configs.on_attach,
-  capabilities = configs.capabilities,
-}
+lspconfig.yamlls.setup{}
+
+lspconfig.eslint.setup{}
